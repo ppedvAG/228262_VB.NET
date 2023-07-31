@@ -24,4 +24,32 @@
         Button1.Top += ySpeed
 
     End Sub
+
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        Text = $"DVD Sceensaver {Date.Today.DayOfWeek} {CInt(Motor.Electro)}"
+
+        Select Case Date.Today.DayOfWeek
+            Case DayOfWeek.Monday
+            Case DayOfWeek.Tuesday
+                BackColor = Color.Black
+
+            Case DayOfWeek.Wednesday
+                BackColor = Color.Violet
+
+            Case Else
+                BackColor = Color.Salmon
+
+        End Select
+
+    End Sub
+
+
+    Enum Motor
+        Benzin = 0
+        Diesel = 1
+        Electro = 244545
+        Hybrid = 3
+    End Enum
+
 End Class
