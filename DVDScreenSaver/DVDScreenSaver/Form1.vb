@@ -30,7 +30,7 @@
         Text = $"DVD Sceensaver {Date.Today.DayOfWeek} {CInt(Motor.Electro)}"
 
         Select Case Date.Today.DayOfWeek
-            Case DayOfWeek.Monday
+            Case DayOfWeek.Sunday
             Case DayOfWeek.Tuesday
                 BackColor = Color.Black
 
