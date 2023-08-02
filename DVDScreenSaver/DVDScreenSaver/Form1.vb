@@ -2,7 +2,7 @@
 
     Dim clickCount As Integer = 0
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(sender As Object, e As EventArgs)
         clickCount += 1
         MessageBox.Show($"Button wurde {clickCount}x geklickt")
     End Sub
@@ -34,11 +34,12 @@
             Case DayOfWeek.Tuesday
                 BackColor = Color.Black
 
-            Case DayOfWeek.Wednesday
+            Case DayOfWeek.Thursday
                 BackColor = Color.Violet
 
             Case Else
-                BackColor = Color.Salmon
+                BackColor = Color.White
+
 
         End Select
 
