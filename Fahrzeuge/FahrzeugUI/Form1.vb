@@ -49,7 +49,13 @@ Public Class Form1
 
             Dim selectedFahrzeug = CType(BindingSource1.Current, Fahrzeug)
 
-            selectedFahrzeug.Hupen()
+            Try
+                selectedFahrzeug.Hupen()
+            Catch ex As YellowHupenException
+                MessageBox.Show($"{ex.Message} - {ex.FarbeInfo}")
+            End Try
+
+
             MessageBox.Show($"{selectedFahrzeug.Modell} {selectedFahrzeug.Hersteller}")
         End If
 
@@ -130,10 +136,25 @@ Public Class Form1
 
     Private Sub loadXMLButton_Click(sender As Object, e As EventArgs) Handles loadXMLButton.Click
 
-        Dim sr As New StreamReader("autos.xml")
-        Dim serializer As New XmlSerializer(GetType(List(Of Fahrzeug)))
-        BindingSource1.DataSource = serializer.Deserialize(sr)
-        sr.Close()
+        Try
+
+            Dim sr As New StreamReader("c:\wÖÜ'ÄÜ*Ö'ÄÖ'ÜÖ'ÄÖ*Ü#+##ekjnbkwej.ddd")
+            Dim serializer As New XmlSerializer(GetType(List(Of Fahrzeug)))
+            BindingSource1.DataSource = serializer.Deserialize(sr)
+            sr.Close()
+
+        Catch ex As FileNotFoundException
+
+            MessageBox.Show($"Die Datei {ex.FileName} ist nicht da {ex.Message} ")
+
+        Catch ex As ArgumentException
+
+            MessageBox.Show($"Der Dateiname ist dumm!!! {ex.Message}  {ex.ParamName} {ex.StackTrace}")
+
+        Catch ex As Exception
+
+            MessageBox.Show($"Es ist ein Fehler aufgetreten: {ex.Message}")
+        End Try
 
     End Sub
 End Class

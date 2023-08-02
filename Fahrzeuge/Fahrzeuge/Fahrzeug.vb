@@ -15,9 +15,30 @@
         Return maxSpeedInMph
     End Function
 
+    ''' <summary>
+    ''' Läßt das Fahrzeug hupen
+    ''' </summary>
+    ''' <remarks>
+    ''' *hup,hup*
+    ''' </remarks>
+    ''' <exception cref="YellowHupenException"/>
     Public Sub Hupen()
+
+        If Farbe = "yellow" Then
+            Dim ex = New YellowHupenException()
+            ex.FarbeInfo = "Gelbe Autos habe kaputte hupen"
+            Throw ex
+        End If
         Console.Beep()
         Console.Beep()
+
     End Sub
+
+End Class
+
+Public Class YellowHupenException
+    Inherits Exception
+
+    Public Property FarbeInfo As String
 
 End Class

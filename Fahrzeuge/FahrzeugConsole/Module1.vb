@@ -6,7 +6,7 @@ Public Module Module1
         Console.WriteLine("*** Fahrzeug Consolen APP v0.1 ***")
 
         Dim auto1 As New Fahrzeug()
-        auto1.Farbe = "gelb"
+        auto1.Farbe = "yellow"
         auto1.MaxGeschwindigkeit = 12
 
         Console.WriteLine($"{auto1.Farbe} {auto1.MaxGeschwindigkeit}km/h {auto1.GetMaxSpeedInMilesPerHour()}mph")

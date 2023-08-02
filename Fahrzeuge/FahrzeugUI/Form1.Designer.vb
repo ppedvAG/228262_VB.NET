@@ -29,6 +29,9 @@ Partial Class Form1
         Me.showSelectedButton = New System.Windows.Forms.Button()
         Me.deleteButton = New System.Windows.Forms.Button()
         Me.saveButton = New System.Windows.Forms.Button()
+        Me.loadButton = New System.Windows.Forms.Button()
+        Me.saveXMLButton = New System.Windows.Forms.Button()
+        Me.loadXMLButton = New System.Windows.Forms.Button()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.fahrzeugeDataGridView = New System.Windows.Forms.DataGridView()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
@@ -43,9 +46,6 @@ Partial Class Form1
         Me.maxGeschwindigkeitNumericUpDown = New System.Windows.Forms.NumericUpDown()
         Me.baujahrDateTimePicker = New System.Windows.Forms.DateTimePicker()
         Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
-        Me.loadButton = New System.Windows.Forms.Button()
-        Me.saveXMLButton = New System.Windows.Forms.Button()
-        Me.loadXMLButton = New System.Windows.Forms.Button()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.FlowLayoutPanel1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -141,6 +141,45 @@ Partial Class Form1
         Me.saveButton.TabIndex = 4
         Me.saveButton.Text = "💾 Speichern"
         Me.saveButton.UseVisualStyleBackColor = True
+        '
+        'loadButton
+        '
+        Me.loadButton.AutoSize = True
+        Me.loadButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.loadButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.loadButton.Location = New System.Drawing.Point(1030, 7)
+        Me.loadButton.Margin = New System.Windows.Forms.Padding(6, 7, 6, 7)
+        Me.loadButton.Name = "loadButton"
+        Me.loadButton.Size = New System.Drawing.Size(122, 39)
+        Me.loadButton.TabIndex = 5
+        Me.loadButton.Text = "📂 Laden"
+        Me.loadButton.UseVisualStyleBackColor = True
+        '
+        'saveXMLButton
+        '
+        Me.saveXMLButton.AutoSize = True
+        Me.saveXMLButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.saveXMLButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.saveXMLButton.Location = New System.Drawing.Point(1164, 7)
+        Me.saveXMLButton.Margin = New System.Windows.Forms.Padding(6, 7, 6, 7)
+        Me.saveXMLButton.Name = "saveXMLButton"
+        Me.saveXMLButton.Size = New System.Drawing.Size(237, 39)
+        Me.saveXMLButton.TabIndex = 6
+        Me.saveXMLButton.Text = "💾 Speichern (XML)"
+        Me.saveXMLButton.UseVisualStyleBackColor = True
+        '
+        'loadXMLButton
+        '
+        Me.loadXMLButton.AutoSize = True
+        Me.loadXMLButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.loadXMLButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.loadXMLButton.Location = New System.Drawing.Point(6, 60)
+        Me.loadXMLButton.Margin = New System.Windows.Forms.Padding(6, 7, 6, 7)
+        Me.loadXMLButton.Name = "loadXMLButton"
+        Me.loadXMLButton.Size = New System.Drawing.Size(194, 39)
+        Me.loadXMLButton.TabIndex = 7
+        Me.loadXMLButton.Text = "📂 Laden (XML)"
+        Me.loadXMLButton.UseVisualStyleBackColor = True
         '
         'SplitContainer1
         '
@@ -291,46 +330,6 @@ Partial Class Form1
         Me.baujahrDateTimePicker.Name = "baujahrDateTimePicker"
         Me.baujahrDateTimePicker.Size = New System.Drawing.Size(494, 39)
         Me.baujahrDateTimePicker.TabIndex = 9
-        '
-        'loadButton
-        '
-        Me.loadButton.AutoSize = True
-        Me.loadButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.loadButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.loadButton.Location = New System.Drawing.Point(1030, 7)
-        Me.loadButton.Margin = New System.Windows.Forms.Padding(6, 7, 6, 7)
-        Me.loadButton.Name = "loadButton"
-        Me.loadButton.Size = New System.Drawing.Size(122, 39)
-        Me.loadButton.TabIndex = 5
-        Me.loadButton.Text = "📂 Laden"
-        Me.loadButton.UseVisualStyleBackColor = True
-        '
-        'saveXMLButton
-        '
-        Me.saveXMLButton.AutoSize = True
-        Me.saveXMLButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.saveXMLButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.saveXMLButton.Location = New System.Drawing.Point(1164, 7)
-        Me.saveXMLButton.Margin = New System.Windows.Forms.Padding(6, 7, 6, 7)
-        Me.saveXMLButton.Name = "saveXMLButton"
-        Me.saveXMLButton.Size = New System.Drawing.Size(237, 39)
-        Me.saveXMLButton.TabIndex = 6
-        Me.saveXMLButton.Text = "💾 Speichern (XML)"
-        Me.saveXMLButton.UseVisualStyleBackColor = True
-        '
-        'loadXMLButton
-        '
-        Me.loadXMLButton.AutoSize = True
-        Me.loadXMLButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.loadXMLButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.loadXMLButton.ForeColor = System.Drawing.Color.White
-        Me.loadXMLButton.Location = New System.Drawing.Point(6, 60)
-        Me.loadXMLButton.Margin = New System.Windows.Forms.Padding(6, 7, 6, 7)
-        Me.loadXMLButton.Name = "loadXMLButton"
-        Me.loadXMLButton.Size = New System.Drawing.Size(194, 39)
-        Me.loadXMLButton.TabIndex = 7
-        Me.loadXMLButton.Text = "📂 Laden (XML)"
-        Me.loadXMLButton.UseVisualStyleBackColor = True
         '
         'OpenFileDialog1
         '
