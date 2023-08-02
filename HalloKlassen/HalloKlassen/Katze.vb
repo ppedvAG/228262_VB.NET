@@ -5,19 +5,19 @@
     End Sub
 
     Sub New(name As String)
-        _name = name
+        '_name = name
+
         Me.Name = name
     End Sub
 
     Public Property Farbe As String 'Auto-Property
-
 
     Private _name As String 'backing field
     Public Property Name As String ' Full-Property
         Get
             Return _name
         End Get
-        Set
+        Friend Set
             If Value = "Puma" Then
                 _name = "Pumba"
             Else

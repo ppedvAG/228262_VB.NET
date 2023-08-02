@@ -28,7 +28,7 @@ Partial Class Form1
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.showSelectedButton = New System.Windows.Forms.Button()
         Me.deleteButton = New System.Windows.Forms.Button()
-        Me.Button4 = New System.Windows.Forms.Button()
+        Me.saveButton = New System.Windows.Forms.Button()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.fahrzeugeDataGridView = New System.Windows.Forms.DataGridView()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
@@ -43,6 +43,10 @@ Partial Class Form1
         Me.maxGeschwindigkeitNumericUpDown = New System.Windows.Forms.NumericUpDown()
         Me.baujahrDateTimePicker = New System.Windows.Forms.DateTimePicker()
         Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
+        Me.loadButton = New System.Windows.Forms.Button()
+        Me.saveXMLButton = New System.Windows.Forms.Button()
+        Me.loadXMLButton = New System.Windows.Forms.Button()
+        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.FlowLayoutPanel1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
@@ -62,9 +66,9 @@ Partial Class Form1
         Me.newButton.Location = New System.Drawing.Point(117, 7)
         Me.newButton.Margin = New System.Windows.Forms.Padding(6, 7, 6, 7)
         Me.newButton.Name = "newButton"
-        Me.newButton.Size = New System.Drawing.Size(201, 39)
+        Me.newButton.Size = New System.Drawing.Size(233, 39)
         Me.newButton.TabIndex = 0
-        Me.newButton.Text = "Neues Fahrzeug"
+        Me.newButton.Text = "🚗 Neues Fahrzeug"
         Me.newButton.UseVisualStyleBackColor = True
         '
         'Label1
@@ -88,12 +92,15 @@ Partial Class Form1
         Me.FlowLayoutPanel1.Controls.Add(Me.newButton)
         Me.FlowLayoutPanel1.Controls.Add(Me.showSelectedButton)
         Me.FlowLayoutPanel1.Controls.Add(Me.deleteButton)
-        Me.FlowLayoutPanel1.Controls.Add(Me.Button4)
+        Me.FlowLayoutPanel1.Controls.Add(Me.saveButton)
+        Me.FlowLayoutPanel1.Controls.Add(Me.loadButton)
+        Me.FlowLayoutPanel1.Controls.Add(Me.saveXMLButton)
+        Me.FlowLayoutPanel1.Controls.Add(Me.loadXMLButton)
         Me.FlowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.FlowLayoutPanel1.Location = New System.Drawing.Point(0, 0)
         Me.FlowLayoutPanel1.Margin = New System.Windows.Forms.Padding(6, 7, 6, 7)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(1590, 53)
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(1590, 106)
         Me.FlowLayoutPanel1.TabIndex = 2
         '
         'showSelectedButton
@@ -101,12 +108,12 @@ Partial Class Form1
         Me.showSelectedButton.AutoSize = True
         Me.showSelectedButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.showSelectedButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.showSelectedButton.Location = New System.Drawing.Point(330, 7)
+        Me.showSelectedButton.Location = New System.Drawing.Point(362, 7)
         Me.showSelectedButton.Margin = New System.Windows.Forms.Padding(6, 7, 6, 7)
         Me.showSelectedButton.Name = "showSelectedButton"
-        Me.showSelectedButton.Size = New System.Drawing.Size(289, 39)
+        Me.showSelectedButton.Size = New System.Drawing.Size(321, 39)
         Me.showSelectedButton.TabIndex = 2
-        Me.showSelectedButton.Text = "Show selected Fahrzeug"
+        Me.showSelectedButton.Text = "📯 Show selected Fahrzeug"
         Me.showSelectedButton.UseVisualStyleBackColor = True
         '
         'deleteButton
@@ -114,31 +121,31 @@ Partial Class Form1
         Me.deleteButton.AutoSize = True
         Me.deleteButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.deleteButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.deleteButton.Location = New System.Drawing.Point(631, 7)
+        Me.deleteButton.Location = New System.Drawing.Point(695, 7)
         Me.deleteButton.Margin = New System.Windows.Forms.Padding(6, 7, 6, 7)
         Me.deleteButton.Name = "deleteButton"
-        Me.deleteButton.Size = New System.Drawing.Size(114, 39)
+        Me.deleteButton.Size = New System.Drawing.Size(146, 39)
         Me.deleteButton.TabIndex = 3
-        Me.deleteButton.Text = "Löschen"
+        Me.deleteButton.Text = "❌ Löschen"
         Me.deleteButton.UseVisualStyleBackColor = True
         '
-        'Button4
+        'saveButton
         '
-        Me.Button4.AutoSize = True
-        Me.Button4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.Button4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button4.Location = New System.Drawing.Point(757, 7)
-        Me.Button4.Margin = New System.Windows.Forms.Padding(6, 7, 6, 7)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(153, 39)
-        Me.Button4.TabIndex = 4
-        Me.Button4.Text = "Abbrechnen"
-        Me.Button4.UseVisualStyleBackColor = True
+        Me.saveButton.AutoSize = True
+        Me.saveButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.saveButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.saveButton.Location = New System.Drawing.Point(853, 7)
+        Me.saveButton.Margin = New System.Windows.Forms.Padding(6, 7, 6, 7)
+        Me.saveButton.Name = "saveButton"
+        Me.saveButton.Size = New System.Drawing.Size(165, 39)
+        Me.saveButton.TabIndex = 4
+        Me.saveButton.Text = "💾 Speichern"
+        Me.saveButton.UseVisualStyleBackColor = True
         '
         'SplitContainer1
         '
         Me.SplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SplitContainer1.Location = New System.Drawing.Point(0, 53)
+        Me.SplitContainer1.Location = New System.Drawing.Point(0, 106)
         Me.SplitContainer1.Name = "SplitContainer1"
         '
         'SplitContainer1.Panel1
@@ -149,7 +156,7 @@ Partial Class Form1
         '
         Me.SplitContainer1.Panel2.BackColor = System.Drawing.SystemColors.Window
         Me.SplitContainer1.Panel2.Controls.Add(Me.TableLayoutPanel1)
-        Me.SplitContainer1.Size = New System.Drawing.Size(1590, 619)
+        Me.SplitContainer1.Size = New System.Drawing.Size(1590, 566)
         Me.SplitContainer1.SplitterDistance = 849
         Me.SplitContainer1.TabIndex = 3
         '
@@ -160,7 +167,7 @@ Partial Class Form1
         Me.fahrzeugeDataGridView.Location = New System.Drawing.Point(0, 0)
         Me.fahrzeugeDataGridView.Name = "fahrzeugeDataGridView"
         Me.fahrzeugeDataGridView.RowHeadersWidth = 82
-        Me.fahrzeugeDataGridView.Size = New System.Drawing.Size(849, 619)
+        Me.fahrzeugeDataGridView.Size = New System.Drawing.Size(849, 566)
         Me.fahrzeugeDataGridView.TabIndex = 0
         '
         'TableLayoutPanel1
@@ -188,7 +195,7 @@ Partial Class Form1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(737, 619)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(737, 566)
         Me.TableLayoutPanel1.TabIndex = 0
         '
         'Label2
@@ -285,6 +292,52 @@ Partial Class Form1
         Me.baujahrDateTimePicker.Size = New System.Drawing.Size(494, 39)
         Me.baujahrDateTimePicker.TabIndex = 9
         '
+        'loadButton
+        '
+        Me.loadButton.AutoSize = True
+        Me.loadButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.loadButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.loadButton.Location = New System.Drawing.Point(1030, 7)
+        Me.loadButton.Margin = New System.Windows.Forms.Padding(6, 7, 6, 7)
+        Me.loadButton.Name = "loadButton"
+        Me.loadButton.Size = New System.Drawing.Size(122, 39)
+        Me.loadButton.TabIndex = 5
+        Me.loadButton.Text = "📂 Laden"
+        Me.loadButton.UseVisualStyleBackColor = True
+        '
+        'saveXMLButton
+        '
+        Me.saveXMLButton.AutoSize = True
+        Me.saveXMLButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.saveXMLButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.saveXMLButton.Location = New System.Drawing.Point(1164, 7)
+        Me.saveXMLButton.Margin = New System.Windows.Forms.Padding(6, 7, 6, 7)
+        Me.saveXMLButton.Name = "saveXMLButton"
+        Me.saveXMLButton.Size = New System.Drawing.Size(237, 39)
+        Me.saveXMLButton.TabIndex = 6
+        Me.saveXMLButton.Text = "💾 Speichern (XML)"
+        Me.saveXMLButton.UseVisualStyleBackColor = True
+        '
+        'loadXMLButton
+        '
+        Me.loadXMLButton.AutoSize = True
+        Me.loadXMLButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.loadXMLButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.loadXMLButton.ForeColor = System.Drawing.Color.White
+        Me.loadXMLButton.Location = New System.Drawing.Point(6, 60)
+        Me.loadXMLButton.Margin = New System.Windows.Forms.Padding(6, 7, 6, 7)
+        Me.loadXMLButton.Name = "loadXMLButton"
+        Me.loadXMLButton.Size = New System.Drawing.Size(194, 39)
+        Me.loadXMLButton.TabIndex = 7
+        Me.loadXMLButton.Text = "📂 Laden (XML)"
+        Me.loadXMLButton.UseVisualStyleBackColor = True
+        '
+        'OpenFileDialog1
+        '
+        Me.OpenFileDialog1.FileName = "OpenFileDialog1"
+        Me.OpenFileDialog1.Filter = "Textdatei|*.txt|Alles Dateien|*.*"
+        Me.OpenFileDialog1.Title = "Tolle Datei"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(13.0!, 32.0!)
@@ -318,7 +371,7 @@ Partial Class Form1
     Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
     Friend WithEvents showSelectedButton As Button
     Friend WithEvents deleteButton As Button
-    Friend WithEvents Button4 As Button
+    Friend WithEvents saveButton As Button
     Friend WithEvents SplitContainer1 As SplitContainer
     Friend WithEvents fahrzeugeDataGridView As DataGridView
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
@@ -333,4 +386,8 @@ Partial Class Form1
     Friend WithEvents maxGeschwindigkeitNumericUpDown As NumericUpDown
     Friend WithEvents baujahrDateTimePicker As DateTimePicker
     Friend WithEvents BindingSource1 As BindingSource
+    Friend WithEvents loadButton As Button
+    Friend WithEvents saveXMLButton As Button
+    Friend WithEvents loadXMLButton As Button
+    Friend WithEvents OpenFileDialog1 As OpenFileDialog
 End Class

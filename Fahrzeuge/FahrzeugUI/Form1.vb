@@ -1,4 +1,6 @@
-﻿Imports Bogus
+﻿Imports System.IO
+Imports System.Xml.Serialization
+Imports Bogus
 Imports Fahrzeuge
 
 Public Class Form1
@@ -47,8 +49,8 @@ Public Class Form1
 
             Dim selectedFahrzeug = CType(BindingSource1.Current, Fahrzeug)
 
+            selectedFahrzeug.Hupen()
             MessageBox.Show($"{selectedFahrzeug.Modell} {selectedFahrzeug.Hersteller}")
-
         End If
 
     End Sub
@@ -66,6 +68,72 @@ Public Class Form1
             End If
 
         End If
+
+    End Sub
+
+    Private Sub saveButton_Click(sender As Object, e As EventArgs) Handles saveButton.Click
+
+        Dim saveDlg As New SaveFileDialog
+        saveDlg.Title = "Tolle Textdatei speichern"
+        saveDlg.Filter = "Textdatei|*.txt|Alle Dateien|*.*"
+        saveDlg.FileName = "TollesAutos.txt"
+        'saveDlg.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Cookies)
+
+        If saveDlg.ShowDialog() = DialogResult.OK Then
+
+            Dim data = CType(BindingSource1.DataSource, List(Of Fahrzeug))
+
+            Dim sw As New StreamWriter(saveDlg.FileName)
+            sw.WriteLine("Meine Autos")
+            For Each car In data
+                Dim line = String.Join("|", car.Hersteller, car.Modell, car.Farbe, car.Baujahr, car.MaxGeschwindigkeit)
+                sw.WriteLine(line)
+            Next
+            sw.Close()
+
+        End If
+
+    End Sub
+
+    Private Sub loadButton_Click(sender As Object, e As EventArgs) Handles loadButton.Click
+
+        If OpenFileDialog1.ShowDialog() = DialogResult.OK Then
+            Dim data As New List(Of Fahrzeug)
+
+            Dim sr As New StreamReader(OpenFileDialog1.FileName)
+            sr.ReadLine() 'header line
+            While Not sr.EndOfStream
+                Dim line = sr.ReadLine()
+                Dim chunks = line.Split("|")
+                Dim car As New Fahrzeug()
+                car.Hersteller = chunks(0)
+                car.Modell = chunks(1)
+                car.Farbe = chunks(2)
+                car.Baujahr = Date.Parse(chunks(3))
+                car.MaxGeschwindigkeit = Integer.Parse(chunks(4))
+                data.Add(car)
+            End While
+            sr.Close()
+
+            BindingSource1.DataSource = data
+        End If
+    End Sub
+
+    Private Sub saveXMLButton_Click(sender As Object, e As EventArgs) Handles saveXMLButton.Click
+
+        Dim sw As New StreamWriter("autos.xml")
+        Dim serializer As New XmlSerializer(GetType(List(Of Fahrzeug)))
+        serializer.Serialize(sw, BindingSource1.DataSource)
+        sw.Close()
+
+    End Sub
+
+    Private Sub loadXMLButton_Click(sender As Object, e As EventArgs) Handles loadXMLButton.Click
+
+        Dim sr As New StreamReader("autos.xml")
+        Dim serializer As New XmlSerializer(GetType(List(Of Fahrzeug)))
+        BindingSource1.DataSource = serializer.Deserialize(sr)
+        sr.Close()
 
     End Sub
 End Class

@@ -4,7 +4,6 @@
         Dim ran As New Random(7)
         Console.WriteLine(ran.Next(100))
 
-
         Dim mitz As New Katze("Luna")
         'mitz.Name = "Luna"
         mitz.MachLaut()
