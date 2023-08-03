@@ -16,6 +16,22 @@ Public Class MyButton
         End Set
     End Property
 
+    Dim clickCount = 0
+    Protected Overrides Sub OnClick(e As EventArgs)
+        MyBase.OnClick(e)
+        clickCount += 1
+
+        If clickCount Mod 3 = 0 Then
+            Dim args = New TripleClickEventArgs()
+            args.Count = clickCount
+            RaiseEvent TripleClick(args)
+        End If
+
+    End Sub
+
+
+    Public Event TripleClick As Action(Of TripleClickEventArgs)
+
     Dim paintCount = 0
 
     Protected Overrides Sub OnPaint(pevent As PaintEventArgs)
@@ -39,3 +55,10 @@ Public Class MyButton
     End Sub
 
 End Class
+
+
+Public Class TripleClickEventArgs
+    Property Count As Integer
+
+End Class
+

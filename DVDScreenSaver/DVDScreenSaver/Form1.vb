@@ -45,7 +45,6 @@
 
     End Sub
 
-
     Enum Motor
         Benzin = 0
         Diesel = 1
@@ -53,4 +52,9 @@
         Hybrid = 3
     End Enum
 
+    Private Sub Button1_TripleClick(args As TripleClickEventArgs) Handles Button1.TripleClick
+
+        MessageBox.Show("TRIPLECLICK!!!" + args.Count.ToString())
+
+    End Sub
 End Class
