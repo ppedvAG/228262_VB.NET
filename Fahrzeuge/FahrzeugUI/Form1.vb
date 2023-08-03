@@ -1,4 +1,5 @@
 ﻿Imports System.IO
+Imports System.Threading
 Imports System.Xml.Serialization
 Imports Bogus
 Imports Fahrzeuge
@@ -24,14 +25,15 @@ Public Class Form1
 
     Private Sub newButton_Click(sender As Object, e As EventArgs) Handles newButton.Click
 
-        Dim faker = CreateFaker()
-        Dim newFahrZeug = faker.Generate(1).First()
-
-        BindingSource1.Add(newFahrZeug)
+        'Dim faker = CreateFahrzeugFaker()
+        'Dim newFahrZeug = faker.Generate(1).First()
+        '        BindingSource1.Add(newFahrZeug)
+        BindingSource1.Add(CreatePKWFaker().Generate(1).First())
+        BindingSource1.Add(CreateBikeFaker().Generate(1).First())
 
     End Sub
 
-    Public Shared Function CreateFaker() As Faker(Of Fahrzeug)
+    Public Shared Function CreateFahrzeugFaker() As Faker(Of Fahrzeug)
         Dim faker = New Faker(Of Fahrzeug)()
 
         ' Konfiguriere das Erstellen gefälschter Daten für die Eigenschaften des Fahrzeugs
@@ -42,6 +44,39 @@ Public Class Form1
         faker.RuleFor(Function(v) v.Baujahr, Function(f) f.Date.Past(10, DateTime.Now.AddYears(-1)))
 
         Return faker
+    End Function
+
+
+    Public Shared Function CreatePKWFaker() As Faker(Of PKW)
+        Dim pkwFaker As New Faker(Of PKW)()
+        pkwFaker.RuleFor(Function(f) f.Modell, Function(f) f.Vehicle.Model)
+        pkwFaker.RuleFor(Function(f) f.Hersteller, Function(f) f.Vehicle.Manufacturer)
+        pkwFaker.RuleFor(Function(f) f.Farbe, Function(f) f.Commerce.Color)
+        pkwFaker.RuleFor(Function(f) f.MaxGeschwindigkeit, Function(f) f.Random.Number(80, 250))
+        pkwFaker.RuleFor(Function(f) f.Baujahr, Function(f) f.Date.Past(5, DateTime.Now.AddYears(-1)))
+
+        ' PKW-spezifische Faker-Regeln
+        pkwFaker.RuleFor(Function(f) f.Sitzplätze, Function(f) f.Random.Number(2, 7))
+        pkwFaker.RuleFor(Function(f) f.Leistung, Function(f) f.Random.Number(100, 500))
+        pkwFaker.RuleFor(Function(f) f.Akku, Function(f) f.Random.Number(0, 100))
+
+        Return pkwFaker
+    End Function
+
+    Public Shared Function CreateBikeFaker() As Faker(Of Fahrrad)
+        Dim pkwFaker As New Faker(Of Fahrrad)()
+        pkwFaker.RuleFor(Function(f) f.Modell, Function(f) f.Vehicle.Model)
+        pkwFaker.RuleFor(Function(f) f.Hersteller, Function(f) f.Vehicle.Manufacturer)
+        pkwFaker.RuleFor(Function(f) f.Farbe, Function(f) f.Commerce.Color)
+        pkwFaker.RuleFor(Function(f) f.MaxGeschwindigkeit, Function(f) f.Random.Number(80, 250))
+        pkwFaker.RuleFor(Function(f) f.Baujahr, Function(f) f.Date.Past(5, DateTime.Now.AddYears(-1)))
+
+        ' PKW-spezifische Faker-Regeln
+        pkwFaker.RuleFor(Function(f) f.Klingel, Function(f) f.Random.Bool())
+        pkwFaker.RuleFor(Function(f) f.Leistung, Function(f) f.Random.Number(10, 50))
+        pkwFaker.RuleFor(Function(f) f.Akku, Function(f) f.Random.Number(0, 100))
+
+        Return pkwFaker
     End Function
 
     Private Sub showSelectedButton_Click(sender As Object, e As EventArgs) Handles showSelectedButton.Click
@@ -154,7 +189,45 @@ Public Class Form1
         Catch ex As Exception
 
             MessageBox.Show($"Es ist ein Fehler aufgetreten: {ex.Message}")
+
         End Try
 
+    End Sub
+
+    Private Async Sub longLoadButton_Click(sender As Object, e As EventArgs) Handles longLoadButton.Click
+
+
+        Dim sr As New StreamReader("Autos.txt")
+        Await Task.Delay(5000)
+        Dim line = Await sr.ReadLineAsync()
+        Text = line
+
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
+
+        Dim selectedFahrzeug = TryCast(BindingSource1.Current, IElektroAntrieb)
+
+        If Not selectedFahrzeug Is Nothing Then
+            'MessageBox.Show(selectedFahrzeug.Akku)
+            selectedFahrzeug.Aufladen()
+            'MessageBox.Show(selectedFahrzeug.Akku)
+            BindingSource1.ResetBindings(False)
+        End If
+
+    End Sub
+
+    Private Sub fahrzeugeDataGridView_CellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles fahrzeugeDataGridView.CellFormatting
+
+        If e.ColumnIndex = akkuColumn.Index Then
+
+            Dim akkuDings = TryCast(fahrzeugeDataGridView.Rows(e.RowIndex).DataBoundItem, IElektroAntrieb)
+
+            If Not akkuDings Is Nothing Then
+                e.Value = akkuDings.Akku
+            End If
+
+        End If
     End Sub
 End Class

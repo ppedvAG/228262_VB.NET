@@ -8,7 +8,5 @@
         Return MyBase.GetAge() - 5
     End Function
 
-    Public Overrides Function WasBistDu() As String
-        Return "Employee"
-    End Function
+
 End Class

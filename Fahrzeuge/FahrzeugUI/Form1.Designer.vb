@@ -32,6 +32,8 @@ Partial Class Form1
         Me.loadButton = New System.Windows.Forms.Button()
         Me.saveXMLButton = New System.Windows.Forms.Button()
         Me.loadXMLButton = New System.Windows.Forms.Button()
+        Me.longLoadButton = New System.Windows.Forms.Button()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.fahrzeugeDataGridView = New System.Windows.Forms.DataGridView()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
@@ -47,6 +49,8 @@ Partial Class Form1
         Me.baujahrDateTimePicker = New System.Windows.Forms.DateTimePicker()
         Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.akkuColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.FlowLayoutPanel1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
@@ -96,6 +100,8 @@ Partial Class Form1
         Me.FlowLayoutPanel1.Controls.Add(Me.loadButton)
         Me.FlowLayoutPanel1.Controls.Add(Me.saveXMLButton)
         Me.FlowLayoutPanel1.Controls.Add(Me.loadXMLButton)
+        Me.FlowLayoutPanel1.Controls.Add(Me.longLoadButton)
+        Me.FlowLayoutPanel1.Controls.Add(Me.Button1)
         Me.FlowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.FlowLayoutPanel1.Location = New System.Drawing.Point(0, 0)
         Me.FlowLayoutPanel1.Margin = New System.Windows.Forms.Padding(6, 7, 6, 7)
@@ -181,6 +187,33 @@ Partial Class Form1
         Me.loadXMLButton.Text = "📂 Laden (XML)"
         Me.loadXMLButton.UseVisualStyleBackColor = True
         '
+        'longLoadButton
+        '
+        Me.longLoadButton.AutoSize = True
+        Me.longLoadButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.longLoadButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.longLoadButton.Location = New System.Drawing.Point(212, 60)
+        Me.longLoadButton.Margin = New System.Windows.Forms.Padding(6, 7, 6, 7)
+        Me.longLoadButton.Name = "longLoadButton"
+        Me.longLoadButton.Size = New System.Drawing.Size(129, 39)
+        Me.longLoadButton.TabIndex = 8
+        Me.longLoadButton.Text = "Lade lang"
+        Me.longLoadButton.UseVisualStyleBackColor = True
+        '
+        'Button1
+        '
+        Me.Button1.AutoSize = True
+        Me.Button1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.Location = New System.Drawing.Point(353, 60)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(6, 7, 6, 7)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(356, 39)
+        Me.Button1.TabIndex = 9
+        Me.Button1.Text = "🔋 Selected Fahrzeug aufladen"
+        Me.ToolTip1.SetToolTip(Me.Button1, "Kilck here")
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'SplitContainer1
         '
         Me.SplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill
@@ -201,7 +234,11 @@ Partial Class Form1
         '
         'fahrzeugeDataGridView
         '
+        Me.fahrzeugeDataGridView.AllowUserToAddRows = False
+        Me.fahrzeugeDataGridView.AllowUserToDeleteRows = False
+        Me.fahrzeugeDataGridView.AllowUserToResizeRows = False
         Me.fahrzeugeDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.fahrzeugeDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.akkuColumn})
         Me.fahrzeugeDataGridView.Dock = System.Windows.Forms.DockStyle.Fill
         Me.fahrzeugeDataGridView.Location = New System.Drawing.Point(0, 0)
         Me.fahrzeugeDataGridView.Name = "fahrzeugeDataGridView"
@@ -337,6 +374,13 @@ Partial Class Form1
         Me.OpenFileDialog1.Filter = "Textdatei|*.txt|Alles Dateien|*.*"
         Me.OpenFileDialog1.Title = "Tolle Datei"
         '
+        'akkuColumn
+        '
+        Me.akkuColumn.HeaderText = "Akku"
+        Me.akkuColumn.MinimumWidth = 10
+        Me.akkuColumn.Name = "akkuColumn"
+        Me.akkuColumn.Width = 200
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(13.0!, 32.0!)
@@ -389,4 +433,8 @@ Partial Class Form1
     Friend WithEvents saveXMLButton As Button
     Friend WithEvents loadXMLButton As Button
     Friend WithEvents OpenFileDialog1 As OpenFileDialog
+    Friend WithEvents longLoadButton As Button
+    Friend WithEvents Button1 As Button
+    Friend WithEvents akkuColumn As DataGridViewTextBoxColumn
+    Friend WithEvents ToolTip1 As ToolTip
 End Class

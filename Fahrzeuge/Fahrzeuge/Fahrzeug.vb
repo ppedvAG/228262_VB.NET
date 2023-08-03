@@ -1,12 +1,12 @@
 ﻿Public Class Fahrzeug
     Public Property Modell As String
     Public Property Hersteller As String
-    Public Property Farbe As String
+    Public Property Farbe As System.String
     Public Property MaxGeschwindigkeit As Integer
 
     Public Property Baujahr As Date
 
-    Public Function GetMaxSpeedInMilesPerHour() As Double
+    Public Function GetMaxSpeedInMilesPerHour() As System.Double
         ' Umrechnungsfaktor von km/h in mph
         Const kmToMiles As Double = 0.621371
 
